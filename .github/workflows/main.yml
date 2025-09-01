@@ -1,21 +1,21 @@
-name: Node.js CI
+name: Node.js CI # กำหนดชื่อ workflow
 
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+on: # กำหนดเหตุการณ์ที่ workflow จะทำงาน
+  push: # เมื่อมีการ push โค้ด
+    branches: [ "main" ] # เฉพาะ branch main
+  pull_request: # เมื่อมีการสร้าง pull request
+    branches: [ "main" ] # เฉพาะ branch main
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v4
-    - name: Use Node.js
-      uses: actions/setup-node@v4
+jobs: # กำหนดงานที่จะทำใน workflow
+  build: # งานชื่อ build
+    runs-on: ubuntu-latest # ใช้ runner เป็น ubuntu เวอร์ชันล่าสุด
+    steps: # ขั้นตอนที่ต้องทำในงานนี้
+    - uses: actions/checkout@v4 # เช็คเอาท์โค้ดจาก repository
+    - name: Use Node.js # ตั้งชื่อขั้นตอนว่า ใช้ Node.js
+      uses: actions/setup-node@v4 # ใช้ action สำหรับติดตั้ง Node.js
       with:
-        node-version: '18.x'
-    - name: Install dependencies
-      run: npm install
-    - name: Run tests
-      run: npm test
+        node-version: '18.x' # กำหนดเวอร์ชัน Node.js เป็น 18.x
+    - name: Install dependencies # ตั้งชื่อขั้นตอนว่า ติดตั้ง dependencies
+      run: npm install # รันคำสั่ง npm install เพื่อติดตั้ง dependencies
+    - name: Run tests # ตั้งชื่อขั้นตอนว่า รันเทส
+      run: npm test # รันคำสั่ง npm test เพื่อทดสอบโค้ด
